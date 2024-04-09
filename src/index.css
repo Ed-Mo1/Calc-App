@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.overflow-dark {
+  --sb-track-color: #202128;
+  --sb-thumb-color: #262831;
+  --sb-size: 10px;
+}
+
+.overflow-light {
+  --sb-track-color: #eeeeee;
+  --sb-thumb-color: #fafafa;
+  --sb-size: 10px;
+}
+
+:is(.overflow-dark, .overflow-light)::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+:is(.overflow-dark, .overflow-light)::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 10px;
+}
+
+:is(.overflow-dark, .overflow-light)::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+
+  border-radius: 10px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  :is(.overflow-dark, .overflow-light) {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
+* {
+  transition-duration: 200ms;
+  transition-property: all;
+}
+
+@layer utilities {
+  .headline-large {
+    @apply max-md:text-[38px] max-sm:text-[28px] text-[58px] font-semibold dark:text-white;
+  }
+  .headline-midum {
+    @apply max-md:text-[28px] max-sm:text-[18px] text-[33px] font-medium tracking-[0.25px] dark:text-white;
+  }
+  .headline-small {
+    @apply text-[23px] font-medium tracking-[0.25px] dark:text-white;
+  }
+}
