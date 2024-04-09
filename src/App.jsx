@@ -76,6 +76,7 @@ const reducer = (state, { type, payload }) => {
       break;
     case actions.DELETE_DIGIT:
       if (newState.currentOperand) {
+        newState.madeCalculation = false;
         newState.currentOperand = newState.currentOperand.slice(
           0,
           newState.currentOperand.length - 1
@@ -162,14 +163,14 @@ const App = () => {
         <div className="grid grid-cols-4 gap-5 p-5 rounded-lg rounded-t-3xl bg-[#FAFAFA] dark:bg-calculator-surface">
           <motion.button
             whileTap={{ scale: 0.5 }}
-            className="btn"
+            className="btn text-blue-400 dark:text-blue-200"
             onClick={() => dispatch({ type: actions.CLEAR })}
           >
             AC
           </motion.button>
           <motion.button
             whileTap={{ scale: 0.5 }}
-            className="btn"
+            className="btn text-blue-400 dark:text-blue-200"
             onClick={() => dispatch({ type: actions.DELETE_DIGIT })}
           >
             C
