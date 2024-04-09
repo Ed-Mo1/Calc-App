@@ -48,10 +48,13 @@ body {
   .headline-large {
     @apply max-md:text-[38px] max-sm:text-[28px] text-[58px] font-semibold dark:text-white;
   }
-  .headline-midum {
+  .headline-medium {
     @apply max-md:text-[28px] max-sm:text-[18px] text-[33px] font-medium tracking-[0.25px] dark:text-white;
   }
   .headline-small {
     @apply text-[23px] font-medium tracking-[0.25px] dark:text-white;
+  }
+  .btn{
+    @apply headline-medium shadow-lg rounded-lg grid place-content-center p-3
   }
 }

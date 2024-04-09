@@ -4,6 +4,10 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      gridTemplateRows: {
+        calculator: "minmax(15rem , auto) 1fr",
+        head: "auto 1fr",
+      },
       colors: {
         "indygo-200": "#8C9EFF",
         "calculator-dark": "#202128",
