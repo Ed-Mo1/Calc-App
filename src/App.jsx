@@ -21,6 +21,11 @@ const reducer = (state, { type, payload }) => {
   switch (type) {
     case actions.ADD_DIGIT:
       if (newState.madeCalculation) {
+        if (payload.digit === ".") {
+          newState.currentOperand = "0.";
+          newState.madeCalculation = false;
+          return newState;
+        }
         newState.currentOperand = String(payload.digit);
         newState.madeCalculation = false;
       } else if (
@@ -28,13 +33,14 @@ const reducer = (state, { type, payload }) => {
         newState.currentOperand.includes(".")
       ) {
         // return state;
+      } else if (payload.digit === "." && newState.currentOperand === "0") {
+        newState.currentOperand = "0.";
       } else if (payload.digit === "0" && newState.currentOperand === "0") {
         // return state;
       } else if (payload.digit !== "0" && newState.currentOperand === "0") {
         newState.currentOperand = String(payload.digit);
       } else {
-        newState.currentOperand =
-          (newState.currentOperand || "0") + payload.digit;
+        newState.currentOperand = newState.currentOperand + payload.digit;
       }
       break;
     case actions.CHOOSE_OPERATION:
@@ -75,8 +81,11 @@ const reducer = (state, { type, payload }) => {
       newState.madeCalculation = false;
       break;
     case actions.DELETE_DIGIT:
-      if (newState.currentOperand) {
+      if (newState.madeCalculation) {
+        newState.currentOperand = "0";
         newState.madeCalculation = false;
+      }
+      if (newState.currentOperand) {
         newState.currentOperand = newState.currentOperand.slice(
           0,
           newState.currentOperand.length - 1
